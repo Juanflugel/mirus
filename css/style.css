@@ -1,0 +1,31 @@
+/* Empty. Add your own CSS if you like */
+.subHeaderStyle{
+	font-size: small;
+	color: #444;
+	font-weight: bold;
+}
+.card {
+	width: auto;
+	border-top: solid 3px #00796B !important;
+	border-radius: 1px;
+}
+.card img {
+	box-shadow: none;
+}
+.item-avatar .item-content>img:first-child{
+	max-height: 65px;
+	max-width: 65px;
+}
+.bills {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-color: transparent;
+}
+.first{
+    color:#212121;
+}
+.second{
+    color: #727272;
+    font-size: small !important;
+}

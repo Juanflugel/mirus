@@ -1,0 +1,21 @@
+<ion-view view-title="Bills">
+<div class="bar bar-subheader bar-stable">
+  <h2 align="center" class="subHeaderStyle padding">
+    All Bills Registered
+  </h2>
+</div>
+  <ion-content class="has-header has-subheader">
+    <ion-item class="item-icon-right item-avatar card bills" ng-repeat="bill in bills" type="item-text-wrap" href="#/app/bills/{{bill._id}}" ng-click="passBill(bill)">
+    	<img src="https://pbs.twimg.com/profile_images/698459967624474624/FsezpZpl.jpg">
+        <h2 class="first">Juan Garcia {{bill}}</h2>
+        <p class="second">1111</p>
+        <p class="second">22222</p>
+        <!-- <p class="second time">{{bill.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p> -->
+        <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>  
+    
+  </ion-content>
+  <button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" on-touch="newCode()">
+			<i class="icon ion-plus-round"></i>
+		 </button>
+</ion-view>
