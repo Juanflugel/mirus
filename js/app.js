@@ -7,6 +7,8 @@
 angular.module('starter', [
   'ionic',
   'ionic-material',
+  'ngCordova',
+  'mirus.services',
   'mirus.billsModule',
   'starter.controllers'])
 
