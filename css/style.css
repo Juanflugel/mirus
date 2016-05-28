@@ -24,8 +24,22 @@
 }
 .first{
     color:#212121;
+    text-transform: uppercase;
 }
 .second{
     color: #727272;
     font-size: small !important;
+}
+.card .item.item-avatar {
+	padding-left: 10px;
+}
+.headerprolist{
+	min-height: 55px !important;
+}
+.headerprolist img{
+	position: absolute;
+	top:8px !important;
+}
+.headerprolist h2{
+	margin-top: 10px;
 }

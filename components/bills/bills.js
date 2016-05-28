@@ -3,32 +3,54 @@ angular.module('mirus.billsModule',[
 	'ngCordova'
 	])
 
-.controller('billsCtrl', ['$scope','getInfo','$cordovaBarcodeScanner','$localstorage',function ($scope,getInfo,$cordovaBarcodeScanner,$localstorage){
+.controller('billsCtrl', ['$scope','getInfo','$cordovaBarcodeScanner','$localstorage','handleBills',function ($scope,getInfo,$cordovaBarcodeScanner,$localstorage,handleBills){
+	
+	getInfo.getBill.query({},function (data){
+		$scope.bills = data;
+	});
+	//$scope.bills = $localstorage.getObject('bills')||[];
 
-	$scope.bills = $localstorage.getObject('bills')||[];
+	$scope.passBill = function(obj){
+		handleBills.passBill(obj);
+	}
 
 	$scope.getNewBill = function(){
 
 		$cordovaBarcodeScanner.scan().then(function(barcode) {
-	        const code = barcode.text;
-	        const type = barcode.type;
-	        const query = {};
-	        query.billId = code;
+			const code = barcode.text;
+			const type = barcode.type;
+			const query = {};
+			query.billId = code;
+	        // validacion de lectura del codigo
+	        if (code = "" || undefined || null){
+	        	alert('Invalid Bill Number');
+	        }
+	        // query para buscar el numero de factura
+	        else {
 	        	getInfo.getBill.query(query,function (data){
-	        		$scope.bills.push(data[0]);
-					$localstorage.setObject('bills',$scope.bills);
-				},function (err){});
 
-	    },function(error) {
-	        alert(error);
-	    });
+		        	if (data.length == 0){
+		        		alert('The Scaned Code Is Not Registered Yet');
+		        	}
+		        	else{
+			        	$scope.bills.push(data[0]);
+			        	$localstorage.setObject('bills',$scope.bills);
+		        	}
+		        	
+
+	        	},function (err){});
+	   		}
+
+		},function(error) {
+			alert(error);
+		});
 
 	};
 
+}])
 
-	
-
-	
-
-	
+.controller('productsListCtrl', ['$scope','handleBills', function ($scope,handleBills){
+	$scope.currentBill = handleBills.getCurrentBill();
+	$scope.products = $scope.currentBill.bougthProducts;
+	console.log('new controller working');
 }])

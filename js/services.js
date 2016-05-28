@@ -9,11 +9,13 @@ angular.module('mirus.services', ['ngResource'])
       protocol: 'http'
   };
 })
+
 .factory('getInfo', ['$resource','Config',function ($resource,Config){
 	return {
 		getBill:$resource('http://' + Config.ip + ':' + Config.port + '/bills',{})
 	};
 }])
+
 .factory('$localstorage', ['$window', function($window) {
   return {
     set: function(key, value) {
@@ -30,3 +32,34 @@ angular.module('mirus.services', ['ngResource'])
     }
   }
 }])
+.factory('handleBills', function ($rootScope) {
+
+  var currentBill={};
+  var detalle ={};
+  var toBuy = {};
+
+  return {
+    updateBills:function(){
+      $rootScope.$broadcast('newBill');
+    },
+    updateBuyList:function(){
+      $rootScope.$broadcast('newProductToBuy');
+    },
+    passBill: function(obj){
+      currentBill = obj;
+      console.log('passBill working');
+    },
+    remove: function(bill) {
+      bills.splice(bills.indexOf(bill), 1);
+    },
+    getCurrentBill: function() {
+      return currentBill;
+    },
+    passProduct: function(obj){
+       detalle = obj;
+    },
+    getCurrentProduct: function(){
+      return detalle;
+    }
+  }
+})

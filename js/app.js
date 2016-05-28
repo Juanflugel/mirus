@@ -12,8 +12,10 @@ angular.module('starter', [
   'mirus.billsModule',
   'starter.controllers'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope,$cordovaNetwork) {
+  var internetConnected = true;
   $ionicPlatform.ready(function() {
+    
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -25,6 +27,22 @@ angular.module('starter', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+     if (window.Connection) {
+     // listen for Online event
+      $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+        if(internetConnected) return;
+        internetConnected = true;
+        alert(onlineState.toUpperCase()+' Conexion working');
+      })
+
+      // listen for Offline event
+      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+        if(!internetConnected) return;
+          internetConnected = false;
+        alert('No Internet Conexion');
+      })
+    }
+
   });
 })
 
@@ -48,15 +66,16 @@ angular.module('starter', [
       }
     }
   })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+  .state('app.productsList', {
+    url: '/bills/:billId',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/bills/productsList.html',
+        controller: 'productsListCtrl'
       }
-    })
+    }
+  })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {
@@ -77,5 +96,5 @@ angular.module('starter', [
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/bills');
 });
