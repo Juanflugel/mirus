@@ -1,33 +1,21 @@
-<ion-view view-title="Products List">
-      <!-- <div class="bar bar-subheader bar-stable">
-        <h2 class="subHeaderStyle text-center padding" style="width:100%;">
-          Purchsed Products 
-        </h2>
-      </div> -->
+<ion-view view-title="PRODUKTLISTE">
 
-      <a class="item item-avatar bar bar-subheader headerprolist">
+      <a class="item item-avatar bar bar-subheader headerprolist avlist">
                 <img src="{{currentBill.providerImage}}">
                 <h2>{{currentBill.providerName}}</h2>
-                <p>{{currentBill.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+                <p class="time">{{currentBill.purchaseDate | date:" MM.dd.yyyy 'at' h:mma"}}</p>
             </a>
 
   <ion-content class="has-header has-subheader">
 
-
-        <!-- header with the mall -->
-            
-
-             <div class="list">
-              <a class="item item-avatar item-icon-right" href="#" ng-repeat="product in products">
+             <div class="list list-inset">
+              <a class="item item-avatar item-icon-right avlist" href="#" ng-repeat="product in products">
                 <img ng-src="{{product.itemImage}}">
-                <h2>{{product.itemName}}</h2>
-                <p>Back off, man. I'm a scientist.</p><p class="time">Verfallsdatum :{{product.lastDate | date:"MM/dd/yyyy"}}</p>
+                <h2>{{product.itemName}} <span class="pull-right">{{product.itemPrice}} EUR</span></h2>
+                <p class="time">Verfallsdatum :{{product.itemLastDate | date: " MM.dd.yyyy"}} <span class="pull-right">{{product.itemAmount}} {{product.itemUnits}}</span></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
               </a>
             </div>
-
-
-
     
   </ion-content>
   <button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" on-touch="getNewBill()">

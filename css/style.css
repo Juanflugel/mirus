@@ -30,11 +30,16 @@
     color: #727272;
     font-size: small !important;
 }
+.time{
+	color: #727272;
+    font-size: x-small !important;
+}
 .card .item.item-avatar {
 	padding-left: 10px;
 }
 .headerprolist{
-	min-height: 55px !important;
+	min-height: 60px !important;
+	background-color: white;
 }
 .headerprolist img{
 	position: absolute;
@@ -42,4 +47,13 @@
 }
 .headerprolist h2{
 	margin-top: 10px;
+}
+.list{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+}
+.list-inset{
+	margin:20px 5px;
+}
+.avlist{
+	padding-left: 70px;
 }
