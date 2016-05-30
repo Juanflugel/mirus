@@ -1,4 +1,5 @@
 <ion-view view-title="QUITTUNGEN">
+
       <div class="bar bar-subheader bar-stable">
         <h2 class="subHeaderStyle text-center padding" style="width:100%;">
           Alle registrierten Quittungen
@@ -8,7 +9,7 @@
   <ion-content class="has-header has-subheader">
     <ion-item class="item-icon-right item-avatar card bills" ng-repeat="bill in bills track by $index" type="item-text-wrap" href="#/app/bills/{{bill._id}}" ng-click="passBill(bill)">
     	<img ng-src="{{bill.providerImage}}">
-        <h2 class="first">{{bill.providerName}} <span class="pull-right" >{{bill.totalPaid}} {{bill.currency}}</span></h2>
+        <h2 class="first">{{bill.providerName}} <span class="pull-right">{{bill.totalPaid}} {{bill.currency}}</span></h2>
         <p class="second">{{bill.bougthProducts.length}} Produkte</p>
         <p class="time">{{bill.purchaseDate | date: " MM.dd.yyyy"}} <span class="pull-right">{{bill.mallAddress}}</span></p>
         <!-- <p class="second time">{{bill.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p> -->

@@ -75,6 +75,15 @@ angular.module('starter', [
       }
     }
   })
+  .state('app.productDetail', {
+    url: '/bills/:billId/:productId',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/bills/productDetail.html',
+        controller: 'productDetailCtrl'
+      }
+    }
+  })
 
     .state('app.playlists', {
       url: '/playlists',

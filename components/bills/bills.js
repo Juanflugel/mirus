@@ -55,4 +55,11 @@ angular.module('mirus.billsModule',[
 	$scope.currentBill = handleBills.getCurrentBill();
 	$scope.products = $scope.currentBill.bougthProducts;
 	console.log('new controller working');
+	$scope.passProduct = function(obj){
+		handleBills.passProduct(obj);
+	}
+}])
+.controller('productDetailCtrl', ['$scope', 'handleBills',function ($scope,handleBills){
+	$scope.currentBill = handleBills.getCurrentBill();
+	$scope.currentProduct = handleBills.getCurrentProduct();
 }])
