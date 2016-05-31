@@ -57,3 +57,6 @@
 .avlist{
 	padding-left: 70px;
 }
+i.ion-ios-paper-outline, i.ion-android-bus, i.ion-ios-star{
+	font-size: 30px;
+}
