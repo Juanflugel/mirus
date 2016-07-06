@@ -10,6 +10,7 @@ angular.module('starter', [
   'ngCordova',
   'mirus.services',
   'mirus.billsModule',
+  'mirus.buyListModule',
   'starter.controllers'])
 
 .run(function($ionicPlatform,$rootScope,$cordovaNetwork) {
@@ -85,12 +86,12 @@ angular.module('starter', [
     }
   })
 
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.buyList', {
+      url: '/buyList',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'components/Einkauflist/buyList.html',
+          controller: 'MyCtrl'
         }
       }
     })

@@ -5,10 +5,10 @@ angular.module('mirus.billsModule',[
 
 .controller('billsCtrl', ['$scope','getInfo','$cordovaBarcodeScanner','$localstorage','handleBills',function ($scope,getInfo,$cordovaBarcodeScanner,$localstorage,handleBills){
 	
-	// getInfo.getBill.query({},function (data){
-	// 	$scope.bills = data;
-	// });
-	$scope.bills = $localstorage.getObject('bills')||[];
+	getInfo.getBill.query({},function (data){
+		$scope.bills = data;
+	});
+	// $scope.bills = $localstorage.getObject('bills')||[];
 
 	$scope.passBill = function(obj){
 		handleBills.passBill(obj);
@@ -59,7 +59,13 @@ angular.module('mirus.billsModule',[
 		handleBills.passProduct(obj);
 	}
 }])
-.controller('productDetailCtrl', ['$scope', 'handleBills',function ($scope,handleBills){
+.controller('productDetailCtrl', ['$scope', 'handleBills','$localstorage',function ($scope,handleBills,$localstorage){
 	$scope.currentBill = handleBills.getCurrentBill();
 	$scope.currentProduct = handleBills.getCurrentProduct();
+	$scope.sendToBuyList = function(obj){
+		var buyList = $localstorage.getObject('buyList');
+		buyList.push(obj);
+		$localstorage.setObject('buyList',buyList);
+		alert('item : '+ obj.itemName + ' sent to BuyList');
+	}
 }])

@@ -34,8 +34,8 @@ angular.module('mirus.services', ['ngResource'])
 }])
 .factory('handleBills', function ($rootScope) {
 
-  var currentBill={};
-  var detalle ={};
+  var currentBill = {};
+  var detalle = {};
   var toBuy = {};
 
   return {
@@ -60,6 +60,20 @@ angular.module('mirus.services', ['ngResource'])
     },
     getCurrentProduct: function(){
       return detalle;
+    },
+    diffDate : function(array){
+      var l = array.length
+      var now = new Date().getTime();
+      var newCol = [];
+      var count = 1;
+      for(i=0;i<l;i++){
+        array[i].itemLastDate = new Date(now+2*24*3600*1000*count);
+        newCol.push(array[i]);
+        console.log('trabajando');
+        count++
+      }
+      return newCol;
     }
+
   }
 })
