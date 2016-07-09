@@ -73,6 +73,20 @@ angular.module('mirus.services', ['ngResource'])
         count++
       }
       return newCol;
+    },
+    standardDate: function(array){
+      var newCol = [];
+      _.each(array,function(obj){
+        // var year = new Date(obj.itemLastDate).getFullYear().toString();
+        // var month = (new Date(obj.itemLastDate).getMonth()+1).toString();
+        // var day = new Date(obj.itemLastDate).getDate().toString();
+        var time = new Date(obj.itemLastDate).getTime();
+        obj.itemLastDate = time;
+        newCol.push(obj);
+      });
+       // return _.groupBy(newCol,'itemLastDate');
+       return newCol;
+
     }
 
   }

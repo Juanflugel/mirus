@@ -1,15 +1,18 @@
 <ion-view view-title="EINKAUFLIST" cache-view="false">
 
-      <a class="item item-avatar bar bar-subheader headerprolist avlist">
-                <img src="{{currentBill.providerImage}}">
-                <h2>{{currentBill.providerName}}</h2>
-                <p class="time">{{currentBill.purchaseDate | date:" MM.dd.yyyy 'at' h:mma"}}</p>
-            </a>
+      <div class=" bar bar-subheader headerprolist">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search" ng-model="search">
+          </label>
+        
+              
+      </div>
 
   <ion-content class="has-header has-subheader">
 
              <div class="list list-inset">
-              <a class="item item-avatar item-icon-right avlist" ng-repeat="item in productList" ng-click="passitem(item)">
+              <a class="item item-avatar item-icon-right avlist" ng-repeat="item in productList | filter:search " ng-click="passitem(item)">
                 <img ng-src="{{item.itemImage}}">
                 <h2>{{item.itemName}} <span class="pull-right">{{item.itemPrice}} EUR</span></h2>
                 <p class="time"><span>{{item.itemAmount}} {{item.itemUnits}}</span></p>

@@ -246,5 +246,7 @@ angular.module('mirus.buyListModule',[])
 
 	$scope.deleteProduct = function(index){
 		$scope.productList.splice(index,1);
+		console.log($scope.productList);
+		$localstorage.setObject('buyList',$scope.productList);
 	}
 }]);

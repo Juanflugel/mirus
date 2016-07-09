@@ -60,3 +60,6 @@
 i.ion-ios-paper-outline, i.ion-android-bus, i.ion-ios-star, i.ion-close-circled{
 	font-size: 30px;
 }
+i.ion-android-restaurant {
+	color:#4CAF50 !important;
+}

@@ -11,6 +11,7 @@ angular.module('starter', [
   'mirus.services',
   'mirus.billsModule',
   'mirus.buyListModule',
+  'mirus.allProductsModule',
   'starter.controllers'])
 
 .run(function($ionicPlatform,$rootScope,$cordovaNetwork) {
@@ -85,8 +86,7 @@ angular.module('starter', [
       }
     }
   })
-
-    .state('app.buyList', {
+  .state('app.buyList', {
       url: '/buyList',
       views: {
         'menuContent': {
@@ -94,17 +94,19 @@ angular.module('starter', [
           controller: 'MyCtrl'
         }
       }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+  })
+  .state('app.allProducts', {
+      url: '/allProducts',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/allProducts/allProducts.html',
+          controller: 'allProductsCtrl'
+        }
       }
-    }
-  });
+  })
+  ;
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/bills');
 });

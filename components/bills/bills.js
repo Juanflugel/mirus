@@ -7,8 +7,14 @@ angular.module('mirus.billsModule',[
 	
 	getInfo.getBill.query({},function (data){
 		$scope.bills = data;
+		var l = [];
+		l.push.apply(l,data[0].bougthProducts);
+		l.push.apply(l,data[1].bougthProducts);
+		$localstorage.setObject('allProductsList',l);
+
 	});
-	// $scope.bills = $localstorage.getObject('bills')||[];
+	
+	//$scope.bills = $localstorage.getObject('bills')||[];
 
 	$scope.passBill = function(obj){
 		handleBills.passBill(obj);
@@ -36,6 +42,10 @@ angular.module('mirus.billsModule',[
 		        	else{
 			        	$scope.bills.push(data[0]);
 			        	$localstorage.setObject('bills',$scope.bills);
+			        	var allProducts = $localstorage.getObject('allProductsList')||[] ;
+			        	allProducts.push.apply(allProducts,data[0].bougthProducts);
+			        	$localstorage.setObject('allProductsList',allProducts);
+			        	alert('cantidad '+ data[0].bougthProducts.length);
 		        	}		        
 
 	        	},function (err){
