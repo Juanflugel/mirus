@@ -16,10 +16,9 @@
                 <img ng-src="{{item.itemImage}}">
                 <h2>{{item.itemName}} <span class="pull-right">{{item.itemPrice}} EUR</span></h2>
                 <p class="time"><span>{{item.itemAmount}} {{item.itemUnits}}</span></p>
-                <i class="icon ion-close-circled icon-accessory" ng-click="deleteProduct($index)"></i>
+                <i class="icon ion-close-circled icon-accessory" ng-click="deleteProduct(item)"></i>
               </a>
             </div>
-            {{joda}}
     
   </ion-content>
 </ion-view>

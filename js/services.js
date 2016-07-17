@@ -4,8 +4,8 @@ angular.module('mirus.services', ['ngResource'])
 .factory('Config', function () {
   return {
       version : '0.0.1',
-      ip: 'mirusapp.ddns.net',
-      port: 7777,
+      ip: 'www.estock.website',
+      port: 5006,
       protocol: 'http'
   };
 })

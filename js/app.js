@@ -14,36 +14,48 @@ angular.module('starter', [
   'mirus.allProductsModule',
   'starter.controllers'])
 
-.run(function($ionicPlatform,$rootScope,$cordovaNetwork) {
+.run(function($ionicPlatform,$rootScope,$cordovaNetwork,$cordovaLocalNotification,$state) {
   var internetConnected = true;
   $ionicPlatform.ready(function() {
-    
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+	
+	// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+	// for form inputs)
+	if (window.cordova && window.cordova.plugins.Keyboard) {
+	  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+	  cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-     if (window.Connection) {
-     // listen for Online event
-      $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-        if(internetConnected) return;
-        internetConnected = true;
-        alert(onlineState.toUpperCase()+' Conexion working');
-      })
+	}
+	if (window.StatusBar) {
+	  // org.apache.cordova.statusbar required
+	  StatusBar.styleDefault();
+	}
+	 if (window.Connection) {
+	 // listen for Online event
+	  $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+		if(internetConnected) return;
+		internetConnected = true;
+		alert(onlineState.toUpperCase()+' Conexion working');
+	  })
 
-      // listen for Offline event
-      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        if(!internetConnected) return;
-          internetConnected = false;
-        alert('No Internet Conexion');
-      })
-    }
+	  // listen for Offline event
+	  $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+		if(!internetConnected) return;
+		  internetConnected = false;
+		alert('No Internet Conexion');
+	  })
+	}
+
+	$rootScope.$on("$cordovaLocalNotification:click", function(notification, $state) {
+    // var data = JSON.parse(state.data);
+    // window.location.href = data.url;
+    setTimeout(function(){  
+    	alert('todo fino primo vamos bien');
+    	$state.go('app.allProducts');
+    	 }, 3000);
+   
+	});
+
+	
 
   });
 })
@@ -52,59 +64,58 @@ angular.module('starter', [
   $ionicConfigProvider.navBar.alignTitle('center');
   $stateProvider
 
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+	.state('app', {
+	url: '/app',
+	abstract: true,
+	templateUrl: 'templates/menu.html',
+	controller: 'AppCtrl'
   })
 
   .state('app.bills', {
-    url: '/bills',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/bills/bills.html',
-        controller: 'billsCtrl'
-      }
-    }
+	url: '/bills',
+	views: {
+	  'menuContent': {
+		templateUrl: 'components/bills/bills.html',
+		controller: 'billsCtrl'
+	  }
+	}
   })
   .state('app.productsList', {
-    url: '/bills/:billId',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/bills/productsList.html',
-        controller: 'productsListCtrl'
-      }
-    }
+	url: '/bills/:billId',
+	views: {
+	  'menuContent': {
+		templateUrl: 'components/bills/productsList.html',
+		controller: 'productsListCtrl'
+	  }
+	}
   })
   .state('app.productDetail', {
-    url: '/bills/:billId/:productId',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/bills/productDetail.html',
-        controller: 'productDetailCtrl'
-      }
-    }
+	url: '/bills/:billId/:productId',
+	views: {
+	  'menuContent': {
+		templateUrl: 'components/bills/productDetail.html',
+		controller: 'productDetailCtrl'
+	  }
+	}
   })
   .state('app.buyList', {
-      url: '/buyList',
-      views: {
-        'menuContent': {
-          templateUrl: 'components/Einkauflist/buyList.html',
-          controller: 'MyCtrl'
-        }
-      }
+	  url: '/buyList',
+	  views: {
+		'menuContent': {
+		  templateUrl: 'components/Einkauflist/buyList.html',
+		  controller: 'buyListCtrl'
+		}
+	  }
   })
   .state('app.allProducts', {
-      url: '/allProducts',
-      views: {
-        'menuContent': {
-          templateUrl: 'components/allProducts/allProducts.html',
-          controller: 'allProductsCtrl'
-        }
-      }
-  })
-  ;
+	  url: '/allProducts',
+	  views: {
+		'menuContent': {
+		  templateUrl: 'components/allProducts/allProducts.html',
+		  controller: 'allProductsCtrl'
+		}
+	  }
+  });
 
 
   // if none of the above states are matched, use this as the fallback
