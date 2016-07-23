@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic',
+  'ui.router',
   'ionic-material',
   'ngCordova',
   'mirus.services',
@@ -14,7 +15,7 @@ angular.module('starter', [
   'mirus.allProductsModule',
   'starter.controllers'])
 
-.run(function($ionicPlatform,$rootScope,$cordovaNetwork,$cordovaLocalNotification,$state) {
+.run(function($ionicPlatform,$rootScope,$cordovaNetwork,$cordovaLocalNotification,$state,$timeout) {
   var internetConnected = true;
   $ionicPlatform.ready(function() {
 	
@@ -45,15 +46,13 @@ angular.module('starter', [
 	  })
 	}
 
-	$rootScope.$on("$cordovaLocalNotification:click", function(notification, $state) {
-    // var data = JSON.parse(state.data);
-    // window.location.href = data.url;
-    setTimeout(function(){  
-    	alert('todo fino primo vamos bien');
-    	$state.go('app.allProducts');
-    	 }, 3000);
-   
-	});
+	// $rootScope.$on("$cordovaLocalNotification:click", function(notification, $state,$timeout) {
+ //    // var data = JSON.parse(state.data);
+ //    // window.location.href = data.url;
+ //    $timeout(function(){ $state.go('app.allProducts'); }, 1000);
+ //    // alert('todo fino primo vamos bien');
+ //    // $state.go('app.allProducts');
+	// });
 
 	
 

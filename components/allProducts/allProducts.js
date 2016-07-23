@@ -4,11 +4,12 @@ angular.module('mirus.allProductsModule',[])
 .controller('allProductsCtrl', ['$scope', '$rootScope', '$ionicPlatform', '$cordovaLocalNotification','handleBills','$localstorage',
    function($scope, $rootScope, $ionicPlatform, $cordovaLocalNotification,handleBills,$localstorage) {
 
-$scope.allProductsList = $localstorage.getObject('allProductsList')||[];
+$scope.allProductsList = $localstorage.getObject('allProductsList') ||[];
+      
 
 $scope.standardDate = function(){
  var vaina = handleBills.standardDate($scope.allProductsList);
- //console.log(vaina);
+ console.log(vaina);
 }
 $scope.standardDate();
 
