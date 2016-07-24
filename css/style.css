@@ -64,6 +64,20 @@ i.ion-android-restaurant {
 	color:#4CAF50 !important;
 }
 
+.imenu{
+	background-color: #f8f8f8 !important;
+	text-transform: uppercase;
+	color:#444;;
+}
+
 .imenu >.list{
 	box-shadow: none !important;
+}
+.avatar.special{
+	border-radius: 0%!important;
+	top:10px;
+}
+.menuicon{
+	font-size: 110%;
+	
 }
